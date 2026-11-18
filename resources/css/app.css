@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        background-color: #0B0B0D;
+        color: #FFFFFF;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background-color: #0B0B0D;
+        overflow-x: hidden;
+    }
+
+    input[type="datetime-local"] {
+        color-scheme: dark;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0B0B0D;
+}
+::-webkit-scrollbar-thumb {
+    background: #282B32;
+    border-radius: 4px;
+    border: 1px solid rgba(197, 95, 6, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #C55F06;
+}
+
+.text-stroke-gold {
+    -webkit-text-stroke: 1.5px #DFA94E;
+    color: transparent;
+}
+.text-stroke-orange {
+    -webkit-text-stroke: 1.5px #C55F06;
+    color: transparent;
+}
+
+.bg-contour-pattern {
+    background-image: radial-gradient(circle at 50% 50%, rgba(197, 95, 6, 0.05) 0%, transparent 65%),
+                      linear-gradient(to right, rgba(223, 169, 78, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(223, 169, 78, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+
+.star-gold {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle, #FED06C 10%, #DFA94E 70%, transparent 100%);
+    clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
+}
