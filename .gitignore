@@ -6,3 +6,4 @@
 /storage/logs/*
 .env
 .env.backup
+/storage/framework/sessions/*
