@@ -16,8 +16,5 @@
     "dependencies": {
         "alpinejs": "^3.14.3",
         "composer": "^4.1.0"
-    },
-    "allowScripts": {
-        "esbuild@0.25.12": true
     }
 }

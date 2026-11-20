@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Aspirasi;
 use App\Http\Requests\StoreAspirasiRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
@@ -27,11 +26,11 @@ class AspirasiController extends Controller
             }
         }
 
-        $jenisAspirasiFinal = $validated['jenis_aspirasi'] === 'Other'
-            ? $validated['jenis_aspirasi_other']
+        $jenisAspirasiFinal = $validated['jenis_aspirasi'] === 'Other' 
+            ? $validated['jenis_aspirasi_other'] 
             : $validated['jenis_aspirasi'];
 
-        Aspirasi::create([
+        Log::info('ASPIRASI_BARU_DITERIMA', [
             'nama' => $validated['nama'] ?? 'Anonim',
             'prodi' => $validated['prodi'],
             'kontak' => $validated['kontak'],
@@ -40,6 +39,7 @@ class AspirasiController extends Controller
             'waktu_kejadian' => $validated['waktu_kejadian'],
             'bukti_files' => $uploadedPaths,
             'submitted_at' => now()->toDateTimeString(),
+            'ip_address' => $request->ip(),
         ]);
 
         return redirect()->route('home')
