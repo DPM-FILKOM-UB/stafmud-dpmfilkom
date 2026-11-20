@@ -7,3 +7,10 @@
 .env
 .env.backup
 /storage/framework/sessions/*
+.env
+/vendor
+/node_modules
+/public/storage
+/public/build
+.vite
+.fuse_hidden*
