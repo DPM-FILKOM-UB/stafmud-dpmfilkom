@@ -153,7 +153,29 @@ class AdminController extends Controller
 
     public function showAllAspirasi()
     {
-        $dataAspirasi = Aspirasi::all(['nama', 'prodi', 'kontak', 'jenis_aspirasi', 'aspirasi', 'waktu_kejadian', 'submitted_at', 'bukti_files']);
+        // $dataAspirasi = Aspirasi::all(['nama', 'prodi', 'kontak', 'jenis_aspirasi', 'aspirasi', 'waktu_kejadian', 'submitted_at', 'bukti_files']);
+        $dataAspirasi = Aspirasi::all()
+            ->map(function ($a) {
+                $raw   = $a->bukti_files;
+                $paths = is_string($raw) ? json_decode($raw, true) : $raw;
+                $paths = is_array($paths) ? $paths : [];
+                return [
+                    'nama'     => $a->nama,
+                    'prodi'    => $a->prodi,
+                    'kontak'   => $a->kontak,
+                    'jenis_aspirasi'    => $a->jenis_aspirasi,
+                    'aspirasi' => $a->aspirasi,
+                    'waktu_kejadian' => $a->waktu_kejadian?->translatedFormat('d M Y'),
+                    'submitted_at' => $a->submitted_at?->translatedFormat('d M Y'),
+                    'bukti'    => $a->bukti_files,
+                    'bukti_files' => array_map(fn($path) => [
+                        'url'   => asset('storage/' . $path),
+                        'name'  => basename($path),
+                        'image' => preg_match('/\.(jpe?g|png|gif|webp)$/i', $path) === 1,
+                    ], $paths),
+                ];
+            });
+
         return view('admin_page', [
             'page' => 'aspirasi',
             'data' => $dataAspirasi

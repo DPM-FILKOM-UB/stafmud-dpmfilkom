@@ -4,7 +4,7 @@
     <div class="pointer-events-none absolute -top-48 right-0 h-[26rem] w-[26rem] rounded-full bg-dpm-orange/10 blur-3xl">
     </div>
 
-    <main class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
         {{-- Tabel aspirasi terbaru --}}
         <section class="mt-6 rounded-card border border-dpm-border bg-dpm-card p-6">
@@ -41,12 +41,27 @@
                                     {{ $a['waktu_kejadian'] }}</td>
                                 <td class="whitespace-nowrap py-4 pr-4 text-dpm-muted">
                                     {{ $a['submitted_at'] }}</td>
+                                @php $n = count($a['bukti'] ?? []); @endphp
                                 <td class="py-4">
-                                    @php $n = count($a['bukti_files'] ?? []); @endphp
-                                    <span
-                                        class="whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium {{ $n ? 'bg-emerald-500/10 text-emerald-300' : 'bg-dpm-gray text-dpm-muted' }}">
-                                        {{ $n ? $n . ' file' : 'Tidak ada' }}
-                                    </span>
+                                    @if ($a['bukti_files'])
+                                        <button type="button" data-bukti-open
+                                            data-title="{{ $a['nama'] }} · {{ $a['jenis_aspirasi'] }}"
+                                            data-files="{{ json_encode($a['bukti_files']) }}"
+                                            class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-dpm-border bg-dpm-surface px-3 py-1.5 text-xs font-medium text-dpm-orange-light transition hover:text-dpm-gold-bright hover:shadow-glow-orange">
+                                            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor"
+                                                stroke-width="1.8" viewBox="0 0 24 24">
+                                                <rect x="3" y="4" width="18" height="16" rx="2" />
+                                                <circle cx="9" cy="10" r="1.5" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M21 16l-5-5-8 8" />
+                                            </svg>
+                                            Lihat bukti ({{ $n }})
+                                        </button>
+                                    @else
+                                        <span
+                                            class="whitespace-nowrap rounded-full bg-dpm-gray px-2.5 py-1 text-xs text-dpm-muted">Tidak
+                                            ada</span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty
@@ -63,5 +78,5 @@
         <footer class="mt-8 rounded-card bg-dpm-footer px-6 py-4 text-center text-xs text-dpm-muted">
             &copy; {{ date('Y') }} DPM. Hak cipta dilindungi.
         </footer>
-    </main>
+    </div>
 </div>

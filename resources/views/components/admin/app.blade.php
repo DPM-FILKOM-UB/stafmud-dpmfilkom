@@ -26,6 +26,8 @@
 
     <main id="main-content">
         {{ $slot }}
+
+        <x-admin.bukti-modal />
     </main>
 
     <x-footer />

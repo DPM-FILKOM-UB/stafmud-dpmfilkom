@@ -15,7 +15,7 @@
     <div class="pointer-events-none absolute -top-48 right-0 h-[26rem] w-[26rem] rounded-full bg-dpm-orange/10 blur-3xl">
     </div>
 
-    <main class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {{-- Header (bukan navbar) --}}
         <header class="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -173,6 +173,5 @@
                 </table>
             </div>
         </section>
-    </main>
-    <x-admin.bukti-modal />
+    </div>
 </div>
